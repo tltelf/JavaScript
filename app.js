@@ -1,23 +1,15 @@
-/*
-Ваша часовая ставка 80$ и вы готовы работать не
-более 5 часов в день 5 дней в неделю (кроме выходных).
-К вам приходит заказчик и предлагает заказ на 40
-часов работы.
-Сейчас понедельник.
-Вы должны уехать через 11 дней.
-Выведите в консоль:
-- Boolean переменную успеете ли вы взяться за работу
-- Сколько вы за неё попросите?
-*/
+const projectName = 'cайт магазина';
+const price = 2000;
+const author = 'Василий Пупкин';
 
-// Данные
-const payRateUSD = 80;
-const workingDay  = 5;
-const projectHours = 40;
-const daysBeforeDeparture = 11;
-const weekend = 2;
+const template = author + ' заказал ' + projectName + ' по цене ' + price + '$';
+console.log(template);
 
-const timeLeft = daysBeforeDeparture - projectHours / workingDay - weekend;
-console.log('Смогу ли я работать? ' + (daysBeforeDeparture > timeLeft));
-const payment = projectHours * payRateUSD;
-console.log('Стоимость работ: ' + payment + '$');
+const template2 = `${author} заказал ${projectName} по цене ${price}$`;
+console.log(template2);
+
+const template3 = 'Проект \n' + 'Цена: ' + price + '$';
+console.log(template3);
+const template4 = `Проект
+Цена: ${price}$`;
+console.log(template4);
