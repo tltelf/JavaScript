@@ -1,6 +1,11 @@
-console.log(Boolean(0));                // false
-console.log(Boolean(''));               // false
-console.log(Boolean(undefined));        // false
-console.log(Boolean(null));             // false
-console.log(Boolean(Number('sx')));     // false
-console.log(Boolean(NaN));              // false
+const money = 100;
+
+if (money > 50) {
+  console.log('Может купить наш продукт');
+} else if (money > 55) {
+  console.log('Куплен mini продукт');
+} else {
+  console.log('Не хватает баланса');
+}
+
+console.log('Итог');
