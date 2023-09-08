@@ -1,20 +1,19 @@
-// https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#table
+let a = 5;
+let b = 5.6;
+console.log(typeof a);
+console.log(typeof b);
+a = 'строка';
+console.log(typeof a);
+e = `stroka`;
+console.log(typeof e);
 
-// Операторы присваивания
-let age = 18 + 6;
-age += 2; // age = age + 2
-age -= 3; // age = age - 2
-age *= 2; // age = age * 2
-age /= 2; // age = age / 2
+let isAdmin = a > 10;
+console.log(typeof isAdmin);
 
-age++; // age = age + 1
-age--; // age = age - 1
-console.log(age);
+let c;
+console.log(typeof c);
+c = 5;
+console.log(typeof c);
 
-// Операторы сравнения
-const vasia = 20;
-console.log(age > vasia);
-console.log(age >= vasia);
-console.log(age < vasia);
-console.log(age <= vasia);
-console.log(age === vasia);
+let d = null;
+console.log(typeof d == null);
