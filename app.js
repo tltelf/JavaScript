@@ -1,15 +1,12 @@
-function powerOfTwo(num) {
-  console.log(num);
-  return num * num;
+// Переписать функцию в стрелочную
+
+function toPower(num, power) {
+  const res = num ** power;
+  return res;
 }
 
-console.log(powerOfTwo(5));
+console.log(toPower(2, 3));
 
-const poft = num => num * num;
+const toPowerArrow = (num, power) => num ** power;
 
-const poft2 = num => {
-  console.log(num);
-  return  num * num
-};
-
-console.log(poft(6));
+console.log(toPowerArrow(2, 3));
