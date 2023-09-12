@@ -1,23 +1,24 @@
-const role1 = 'admin';
-const role2 = 'user';
-const role3 = 'superuser';
+const users = ['Аня', 'Вика', 'Маша'];
+console.log(users);     // ['Аня', 'Вика', 'Маша']
+// Изменить элемент массива
+users[2] = 'Кристина';
+console.log(users);     // ['Аня', 'Вика', 'Кристина']
 
-const roles = ['admin', 'user', 'superuser'];
-const userInfo = ['Аня', 25];
-console.log(roles);                         // ['admin', 'user', 'superuser']
-console.log(roles[0]);                      // 'admin'
-// Длина массива
-console.log(roles.length);                  // 3
-// Последний элемент массива
-console.log(roles[roles.length - 1]);       // superuser
+// метод push - добавляет элемент в конец массива и возвращает длину массива
+const arrLength = users.push('Никита');
+console.log(users);     // ['Аня', 'Вика', 'Кристина', 'Никита']
+console.log(arrLength); // 4
 
-console.log(roles.at(0));                   // admin
-// Последний элемент массива
-console.log(roles.at(-1));                  // superuser
+// Добавить элемент в начало массива
+users.unshift('Вася');
+console.log(users);     // ['Вася', 'Аня', 'Вика', 'Кристина', 'Никита']
 
-// В массивах можно использовать вычисляемые значения
-const usersAge = [2040 - 2022, 20 - '6', 10 > 0 ? 5 : 0];
-console.log(usersAge);                      // [18, 14, 5]
+// метод pop - удаляет последний элемент массива и возвращает удаленный элемент
+const el = users.pop();
+console.log(el);        // Никита
+console.log(users);     // ['Вася', 'Аня', 'Вика', 'Кристина']
 
-const userNames = new Array('Вася', 'Петя', 'Катя');
-console.log(userNames);
+// метод shift - удаляет начальный элемент массива и возвращает удаленный элемент
+const el2 = users.shift();
+console.log(el2);       // Вася
+console.log(users);     // ['Аня', 'Вика', 'Кристина']
