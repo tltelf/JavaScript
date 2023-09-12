@@ -1,24 +1,19 @@
-const users = ['Аня', 'Вика', 'Маша'];
-console.log(users);     // ['Аня', 'Вика', 'Маша']
-// Изменить элемент массива
-users[2] = 'Кристина';
-console.log(users);     // ['Аня', 'Вика', 'Кристина']
+const roles = ['user', 'admin', 'manager'];
 
-// метод push - добавляет элемент в конец массива и возвращает длину массива
-const arrLength = users.push('Никита');
-console.log(users);     // ['Аня', 'Вика', 'Кристина', 'Никита']
-console.log(arrLength); // 4
+const elIndex = roles.indexOf('admin');
+console.log(elIndex);                                 // 1
+const elIndex2 = roles.indexOf('superuser');
+console.log(elIndex2);                                // -1
 
-// Добавить элемент в начало массива
-users.unshift('Вася');
-console.log(users);     // ['Вася', 'Аня', 'Вика', 'Кристина', 'Никита']
+if (roles.indexOf('admin') >= 0) {
+  console.log('Доступ есть');                         // Доступ есть
+}
 
-// метод pop - удаляет последний элемент массива и возвращает удаленный элемент
-const el = users.pop();
-console.log(el);        // Никита
-console.log(users);     // ['Вася', 'Аня', 'Вика', 'Кристина']
+console.log(roles.includes('admin'));                 // true
+console.log(roles.includes('superuser'));             // false
 
-// метод shift - удаляет начальный элемент массива и возвращает удаленный элемент
-const el2 = users.shift();
-console.log(el2);       // Вася
-console.log(users);     // ['Аня', 'Вика', 'Кристина']
+if (roles.includes('admin')) {
+  console.log('Доступ есть');                         // Доступ есть
+} else {
+  console.log('Доступа нет');
+}
