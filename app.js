@@ -1,39 +1,23 @@
-/*
-	Пользователь:
-	- Возраст
-	- Наличие работы
-	- Деньги
-	Нужно проверить может ли он купить новый MacBook за 2000$?
-	Он может брать не только свои деньги, но и взять кредит.
-	Ему дадут 500$, только если ему больше 24-х лет и он
-	имеет работу, 100$ если ему просто больше 24-х лет и 0 в
-	ином случае.
-	Напишите функцию, которая принимает данные пользователя
-	и товара и возвращает true или false;
-*/
+const role1 = 'admin';
+const role2 = 'user';
+const role3 = 'superuser';
 
-const age = 25;
-const userMoney = 1500;
-const productPrice = 2000;
+const roles = ['admin', 'user', 'superuser'];
+const userInfo = ['Аня', 25];
+console.log(roles);                         // ['admin', 'user', 'superuser']
+console.log(roles[0]);                      // 'admin'
+// Длина массива
+console.log(roles.length);                  // 3
+// Последний элемент массива
+console.log(roles[roles.length - 1]);       // superuser
 
-function computeCredit(age, hasJob = false) {
-  switch (true) {
-    case age > 24 && hasJob:
-      return 500;
-    case age > 24:
-      return 100;
-    default:
-      return 0;
-  }
-}
+console.log(roles.at(0));                   // admin
+// Последний элемент массива
+console.log(roles.at(-1));                  // superuser
 
-function canBuy(age, userMoney, productPrice, hasJob = false) {
-  if (userMoney < productPrice) {
-    const sumCredit = computeCredit(age, hasJob);
-    userMoney += sumCredit;
-    return userMoney >= productPrice;
-  }
-  return true;
-}
+// В массивах можно использовать вычисляемые значения
+const usersAge = [2040 - 2022, 20 - '6', 10 > 0 ? 5 : 0];
+console.log(usersAge);                      // [18, 14, 5]
 
-console.log(canBuy(age, userMoney, productPrice, true));
+const userNames = new Array('Вася', 'Петя', 'Катя');
+console.log(userNames);
