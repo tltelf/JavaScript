@@ -1,44 +1,13 @@
-/*
-	Дан список задач
-	const tasks = ['Задача 1'];
-	Сделать функции:
-	- Добавление задачи в конец
-	- Удаление задачи по названию
-	- Перенос задачи в начало списка по названию 
-	Всегда меняем исходный массив
+const userData = ['Вася', 18, 'Тольятти'];
 
-  DRY - do not repeat yourself - не повторяйся
-*/
-
-const tasks = ['Задача 1'];
-
-function addTask(arr, task) {
-  arr.push(task);
+function getData() {
+  return ['Вася', 18, 'Тольятти']
 }
 
-function deleteTask(arr, task) {
-  const index = arr.indexOf(task);
-  if (index === -1) {
-    return;
-  }
-  return arr.splice(index, 1);
-}
+// const userName = getData()[0];
+// const userAge = userData[1];
+// const userCity = userData[2];
 
-function prioritizeTask(arr, task) {
-  const result = deleteTask(arr, task);
-  if (!result) {
-    return;
-  }
-  arr.unshift(result[0]);
-}
+const [userName, _, userCity] = userData;
 
-addTask(tasks, 'Задача 2');
-addTask(tasks, 'Задача 3');
-addTask(tasks, 'Задача 4');
-addTask(tasks, 'Задача 5');
-console.log(tasks);                         // ['Задача 1', 'Задача 2', 'Задача 3', 'Задача 4', 'Задача 5']
-deleteTask(tasks, 'Задача 3');
-console.log(tasks);                         // ['Задача 1', 'Задача 2', 'Задача 4', 'Задача 5']
-prioritizeTask(tasks, 'Задача 4');
-prioritizeTask(tasks, 'Задача 2');
-console.log(tasks);                         // ['Задача 2', 'Задача 4', 'Задача 1', 'Задача 5']
+console.log(userName, userCity);          // Вася Тольятти
