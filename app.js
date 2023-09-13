@@ -6,6 +6,8 @@
 	- Удаление задачи по названию
 	- Перенос задачи в начало списка по названию 
 	Всегда меняем исходный массив
+
+  DRY - do not repeat yourself - не повторяйся
 */
 
 const tasks = ['Задача 1'];
@@ -19,17 +21,15 @@ function deleteTask(arr, task) {
   if (index === -1) {
     return;
   }
-  arr.splice(index, 1);
+  return arr.splice(index, 1);
 }
 
 function prioritizeTask(arr, task) {
-  const index = arr.indexOf(task);
-  if (index === -1) {
+  const result = deleteTask(arr, task);
+  if (!result) {
     return;
   }
-  const oldTask = arr[index];
-  arr.splice(index, 1);
-  arr.unshift(oldTask);
+  arr.unshift(result[0]);
 }
 
 addTask(tasks, 'Задача 2');
