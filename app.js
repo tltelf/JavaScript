@@ -1,15 +1,22 @@
-const arr = [2, 4, 4, 9, 6, 10];
+/*
+	Написать функцию, которые возващает true,
+	если элемент есть, и false, если нет.
+*/
 
-let elGT5;
-// for (const el of arr) {
-//   if (el > 5) {
-//     elGT5 = el;
-//     break;
+const arr = [2, 4, 4, 10, 20];
+
+// function some(arr, num) {
+//   for (el of arr) {
+//     if (el === num) {
+//       return el;
+//     }
 //   }
 // }
-// console.log(elGT5);          // 9
 
-elGT5 = arr.find(el => el > 5);
-elGT5Index = arr.findIndex(el => el > 5);
-console.log(elGT5);             // 9
-console.log(elGT5Index);        // 3
+function some(arr, num) {
+  return arr.find(el => el === num) === undefined ? false : true;
+}
+
+console.log(some(arr, 10));             // true
+
+console.log(arr.some(el => el === 1));  // false
