@@ -1,16 +1,23 @@
-// function power(pow) {
-//   return function (num) {
-//     return num**pow;
-//   }
-// }
+const score = [5, 10, 0, 15];
 
-const power = pow => num => num**pow;
+for (let i = 0; i < score.length; i++) {
+  console.log('Раунд: ' + score[i]);
+}
 
-const powerOfTwo = power(2);
-console.log(powerOfTwo(5));         // 25
-console.log(powerOfTwo(10));        // 100
+console.log('-----');
 
-const powerOfThree = power(3);
-console.log(powerOfThree(5));       // 125
+for (const [i, el] of score.entries()) {
+  console.log(`Раунд ${i + 1}: ${el}`);
+}
 
-console.log(power(5)(4));           // 1024
+const iterator = (el, i) => {
+  console.log(`Раунд ${i + 1}: ${el}`);
+}
+
+score.forEach(iterator);
+
+score.forEach((el, i) => {
+  console.log(`Раунд ${i + 1}: ${el}`);
+})
+// (5, 0) => { ... }
+// (10, 1) => { ... }
