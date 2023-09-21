@@ -1,30 +1,19 @@
-const user = {
-  name: 'Вася',
-  surname: 'Пупкин',
-  age: 24,
-  skills: [
-    'Программирование',
-    'Готовка'
-  ],
-  eduBasic: 'Школа 10',
-  eduPro: 'МФТИ'
-};
+/* отсортировать пользователей по возрасту */
 
-console.log(user);
-console.log(user.name);             // Вася
-console.log(user.skills);           // [ 'Программирование', 'Готовка' ]
-console.log(user.skills[0]);        // Программирование
+const users = [
+	{ name: 'Вася', age: 30 },
+	{ name: 'Катя', age: 18 },
+	{ name: 'Аня', age: 40 },
+	{ name: 'Петя', age: 25 },
+];
 
-console.log(user['skills']);        // [ 'Программирование', 'Готовка' ]
+console.log(users.sort((a, b) => a.age - b.age));
 
-const level = 'Pro';
-console.log(user['edu' + level]);   // МФТИ
-
-// const res = prompt('Введите свойство');
-// console.log(user[res]);
-user['city'] = 'Москва';
-console.log(user);
-
-user.age = 26;
-user['age'] = 26;
-console.log(user);
+console.log(users.sort((a, b) => {
+  if (a['age'] > b['age']) {
+      return 1;
+    }
+  if (a['age'] < b['age']) {
+      return -1;
+    }
+}));
