@@ -1,7 +1,6 @@
-const film = 'Звёздные Войны';
-// Метод padStart добавляет переданный символ в начало строки
-console.log(film.padStart(30, '*'));
-// Метод padEnd добавляет переданный символ в конец строки
-console.log(film.padEnd(30, '*'));
-// Метод repeat повторяет строку переданное количество раз
-console.log(film.repeat(10));
+/* Замаскировать всё, кроме последних 4х символов */
+const card = '2342834503458353';
+/* ************8353 */
+
+console.log(card.slice(12).padStart(16, '*'));
+console.log(card.slice(-4).padStart(16, '*'));
