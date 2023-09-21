@@ -1,10 +1,7 @@
-const userFullName = 'Вася Пупкин Васильевич';
-// Метод split переводит строку в массив, принимает символ по которому нужно разделять строку
-console.log(userFullName.split(' '));                                 // [ 'Вася', 'Пупкин', 'Васильевич' ]
-const [firstName, familyName, lastName] = userFullName.split(' ');
-console.log(firstName);
-console.log(familyName);
-console.log(lastName);
-const arr = ['Ты', 'знаешь', 'JS'];
-// Метод join переводит массив в строку, принимает символ который будет разделять элементы массива
-console.log(arr.join(' '));                                           // Ты знаешь JS
+const film = 'Звёздные Войны';
+// Метод padStart добавляет переданный символ в начало строки
+console.log(film.padStart(30, '*'));
+// Метод padEnd добавляет переданный символ в конец строки
+console.log(film.padEnd(30, '*'));
+// Метод repeat повторяет строку переданное количество раз
+console.log(film.repeat(10));
