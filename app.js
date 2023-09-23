@@ -1,18 +1,23 @@
 'use strict';
 
-let firstName = 'Vasya';
-let firstName2 = firstName;
-firstName = 'New';
-// Примитивы хранятся на call stack
-console.log(firstName);             // New
-console.log(firstName2);            // Vasya
-
-const user1 = {
-  name: 'Vasya'
+const user = {
+  name: 'Vasya',
+  id: 1,
 };
 
-const user2 = user1;
-user2.name = 'New';
-// Ссылка на объект хранится в call stack, но сам объект хранится в куче (heap)
-console.log(user1);                 // { name: 'New' }
-console.log(user2);                 // { name: 'New' }
+// const newUser = user;
+// user.name = 'NewUser';
+// console.log(user);                         // { name: 'NewUser', id: 1 } 
+// console.log(newUser);                      // { name: 'NewUser', id: 1 }
+
+// const newUser = Object.assign({}, user);
+// user.name = 'NewUser';
+// console.log(user);                         // { name: 'NewUser', id: 1 }
+// console.log(newUser);                      // { name: 'Vasya', id: 1 }
+
+const newUser = {
+  ...user
+}
+user.name = 'NewUser';
+console.log(user);                            // { name: 'NewUser', id: 1 }
+console.log(newUser);                         // { name: 'Vasya', id: 1 }
