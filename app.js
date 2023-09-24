@@ -1,30 +1,23 @@
 'use strict'
 
-let successMessage = 'Успех';
-const user = {
-  name: 'Вася',
-  roles: []
+addUser();                                  // User added
+// console.log(c);                          // Uncaught ReferenceError: c is not defined
+// console.log(a);                          // Uncaught ReferenceError: Cannot access 'a' before initialization
+console.log(b);                             // undefined
+const a = 3;
+var b = 2;
+console.log(b);                             // 2
+console.log(a);                             // 3
+
+function addUser() {
+  console.log('User added');
 };
 
-function addRole(user, role) {
-  if (role === 'admin') {
-    const message = 'Ошибка';
-    console.log(message);
-    console.log(a);
-    return user;
-  }
-  user.roles.push(role);
-  let successMessage = 'Ура';
-  console.log(successMessage);
+addUser();                                  // User added
 
-  function logRoles() {
-    const a = 3;
-    console.log(user.roles);
-  }
-  logRoles();
+// arr1();                                  // Uncaught ReferenceError: Cannot access 'arr1' before initialization
+const arr1 = () => {
+  console.log('arr1');
+};
 
-  return user;
-}
-
-console.log(addRole(user, 'amind'));
-console.log(successMessage);
+arr1();                                     // arr1
