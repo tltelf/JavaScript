@@ -1,23 +1,38 @@
-'use strict'
+'use strict';
 
-addUser();                                  // User added
-// console.log(c);                          // Uncaught ReferenceError: c is not defined
-// console.log(a);                          // Uncaught ReferenceError: Cannot access 'a' before initialization
-console.log(b);                             // undefined
-const a = 3;
-var b = 2;
-console.log(b);                             // 2
-console.log(a);                             // 3
+// console.log(this);
+// console.log(window);
 
-function addUser() {
-  console.log('User added');
+function addNum(num1, num2) {
+  console.log(this);
+  return num1 + num2;
+};
+// addNum();
+
+const addNum2 = (num1, num2) => {
+  console.log(this);
+  return num1 + num2;
+};
+// addNum2();
+
+const user = {
+  name: 'Вася',
+  surname: 'Пупкин',
+  getFullName: function() {
+    console.log(this);
+    return this.name + ' ' + this.surname;
+  }
+}
+
+user.getFullName();
+
+const user2 = {
+  name: 'Марина',
+  surname: 'Катц'
 };
 
-addUser();                                  // User added
+user2.getFullName = user.getFullName;
+user2.getFullName();
 
-// arr1();                                  // Uncaught ReferenceError: Cannot access 'arr1' before initialization
-const arr1 = () => {
-  console.log('arr1');
-};
-
-arr1();                                     // arr1
+const getFullName = user2.getFullName;
+getFullName();
