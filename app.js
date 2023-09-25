@@ -1,32 +1,17 @@
 'use strict';
-/*
-    дополнить объект методами для получения имени:
-    - компании
-    - сео
-    - сотрудника
-*/
 
-const company = {
-  name: 'ООО Агро',
-  employees: [
-    {
-      name: 'Света',
-      getName: function () {
-        return this.name;
-      }
-    }
-  ],
-  ceo: {
-    name: 'Вася',
-    getCeoName: function () {
-      return this.name;
-    }
+const b = 1;
+
+const a = {
+  b,
+  getB: function () {
+    return this.b;
   },
-  getCompanyName: function () {
-    return this.name;
+  getBAlt() {
+    return this.b;
   }
-};
+}
 
-console.log(company.getCompanyName());
-console.log(company.employees.map(i => i.getName()));
-console.log(company.ceo.getCeoName());
+console.log(a);                       // {b: 1, getB: ƒ, getBAlt: ƒ}
+console.log(a.getB());                // 1
+console.log(a.getBAlt());             // 1
