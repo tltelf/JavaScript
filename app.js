@@ -1,26 +1,20 @@
 'use strict';
 
-function submitForm() {
-  const input = document.querySelector('.input').value;
-  if (!input) {
-    return;
-  }
-  document.querySelector('.panel').innerText = input;
-  document.querySelector('.input').value = '';
-  // document.querySelector('.notification').style.display = 'block';
-  // document.querySelector('.notification').classList.add('notification_active');
-  // document.querySelector('.notification').classList.remove('notification_hidden');
-  console.log(document.querySelector('.notification').getAttribute('class'));               // notification notification_hidden
-  document.querySelector('.notification').setAttribute('class', 'notification');
-  // Можно добавлять собственные атрибуты
-  document.querySelector('.notification').setAttribute('key', 1);
-  document.querySelector('.notification').setAttribute('user-id', 1);
-  console.log(document.querySelector('.notification').getAttribute('user-id'));             // '1'
-  console.log(Number(document.querySelector('.notification').getAttribute('user-id')));     // 1
-};
+// Получение 1 элемента
+console.log(document.querySelector('.one').innerText);
+console.log(document.querySelector('span').innerText);
+console.log(document.querySelector('.one > span').innerText);
+console.log(document.querySelectorAll('.one')[0].innerText);
+console.log(document.getElementsByClassName('one')[0].innerText);
 
-function changeInput(e) {
-  if (e.code === 'Enter') {
-    submitForm();
-  }
-};
+// Получение 2 элемента
+console.log(document.querySelector('.one ~ div').innerText);
+console.log(document.querySelectorAll('.one')[1].innerText);
+console.log(document.getElementsByClassName('one')[1].innerText);
+
+// Получение 3 элемента
+console.log(document.querySelector('#two').innerText);
+console.log(document.getElementById('two').innerText);
+
+// Получение 4 элемента
+console.log(document.querySelector('[user-id="4"]').innerText);
