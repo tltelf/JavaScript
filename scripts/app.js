@@ -10,7 +10,11 @@ const page = {
     h1: document.querySelector('.h1'),
     progressPercent: document.querySelector('.progress__percent'),
     progressCoverBar: document.querySelector('.progress__cover-bar'),
-  }
+  },
+  main: {
+		daysContainer: document.getElementById('days'),
+		nextDay: document.querySelector('.habbit__day')
+	}
 }
 
 /* utils */
@@ -30,9 +34,9 @@ function saveData() {
 /* render */
 function rerenderMenu(activeHabbit) {
   // если нет активной привычки (habbit), то делаем return и ничего не рендерим
-  if (!activeHabbit) {
-    return;
-  }
+  // if (!activeHabbit) {
+  //   return;
+  // }
   // если есть активная привычка (habbit), то мы проходимся по массиву и каждый элемент (привычку (habbit)) рендерим
   for (const habbit of habbits) {
     // находим элемент, в котором menu-habbit-id = habbit.id
@@ -70,9 +74,6 @@ function rerenderMenu(activeHabbit) {
 };
 
 function rerenderHead(activeHabbit) {
-  if (!activeHabbit) {
-    return;
-  }
   page.header.h1.innerText = activeHabbit.name;
   const progress = activeHabbit.days.length / activeHabbit.target > 1
     ? 100
@@ -82,11 +83,34 @@ function rerenderHead(activeHabbit) {
   page.header.progressCoverBar.setAttribute('style', `width: ${progress}%`);
 };
 
+function rerenderBody(activeHabbit) {
+  page.main.daysContainer.innerHTML = '';
+  const days = activeHabbit.days;
+  for (let i = 0; i < days.length; i++) {
+      const element = document.createElement('div');
+      // добавляем класс
+      element.classList.add('habbit');
+      // добавляем этому элементу внутренний HTML
+      element.innerHTML =
+          `<div class="habbit__day">День ${i + 1}</div>
+          <div class="habbit__comment">${days[i].comment}</div>
+          <button class="habbit__delete">
+            <img src="./images/delete.svg" alt="Иконка удаления">
+          </button>`
+      page.main.daysContainer.appendChild(element);
+  }
+  page.main.nextDay.innerText = `День ${activeHabbit.days.length + 1}`;
+};
+
 function rerender(activeHabbitId) {
   // находим активную привычку (habbit)
   const activeHabbit = habbits.find(habbit => habbit.id === activeHabbitId);
+  if (!activeHabbit) {
+    return;
+  }
   rerenderMenu(activeHabbit);
   rerenderHead(activeHabbit);
+  rerenderBody(activeHabbit);
 };
 
 /* init */
