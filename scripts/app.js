@@ -1,7 +1,8 @@
 'use strict';
 
 let habbits = [];
-const HABBIT_KEY = 'HABBIT_KEY'
+const HABBIT_KEY = 'HABBIT_KEY';
+let globalActiveHabbitId;
 
 /* page */
 const page = {
@@ -103,6 +104,7 @@ function rerenderBody(activeHabbit) {
 };
 
 function rerender(activeHabbitId) {
+  globalActiveHabbitId = activeHabbitId;
   // находим активную привычку (habbit)
   const activeHabbit = habbits.find(habbit => habbit.id === activeHabbitId);
   if (!activeHabbit) {
@@ -115,11 +117,34 @@ function rerender(activeHabbitId) {
 
 /* work with days */
 function addDays(event) {
+  const form = event.target;
   event.preventDefault();
   console.log(event.target);  // Здесь выводится наша форма <form class="habbit__form"...
   // В const data записываем данные нашей формы. FormData принимает форму, как HTML элемент
   const data = new FormData(event.target);
   console.log(data.get('comment'));  // Выводит данные, которые мы ввели в форму
+  form['comment'].classList.remove('error')
+  const comment = data.get('comment');
+  if (!comment) {
+    form['comment'].classList.add('error');
+    return;
+  }
+  habbits = habbits.map(habbit => {
+    if (habbit.id === globalActiveHabbitId) {
+      return {
+        ...habbit,
+        days: habbit.days.concat([{ comment }])
+      }
+    }
+    return habbit;
+  });
+  form['comment'].value = '';
+  rerender(globalActiveHabbitId);
+  saveData();
+}
+
+function add(comm) {
+
 }
 
 /* init */
