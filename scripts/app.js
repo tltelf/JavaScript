@@ -113,6 +113,15 @@ function rerender(activeHabbitId) {
   rerenderBody(activeHabbit);
 };
 
+/* work with days */
+function addDays(event) {
+  event.preventDefault();
+  console.log(event.target);  // Здесь выводится наша форма <form class="habbit__form"...
+  // В const data записываем данные нашей формы. FormData принимает форму, как HTML элемент
+  const data = new FormData(event.target);
+  console.log(data.get('comment'));  // Выводит данные, которые мы ввели в форму
+}
+
 /* init */
 (() => {
   loadData();
