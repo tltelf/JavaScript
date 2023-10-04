@@ -16,7 +16,8 @@ const page = {
 		daysContainer: document.getElementById('days'),
 		nextDay: document.querySelector('.habbit__day')
 	},
-  popup: document.querySelector('.cover')
+  popup: document.querySelector('.cover'),
+  iconField: document.querySelector('.popup__form input[name="icon"]')
 }
 
 /* utils */
@@ -162,6 +163,14 @@ function deleteDay(i) {
 /* popup */
 function togglePopup() {
   page.popup.classList.toggle('cover_hidden');
+}
+
+/* working with habbits */
+function setIcon(context, icon) {
+  page.iconField.value = icon;
+  const activeIcon = document.querySelector('.icon.icon_active');
+  activeIcon.classList.remove('icon_active');
+  context.classList.add('icon_active');
 }
 
 /* init */
