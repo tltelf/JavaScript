@@ -15,7 +15,8 @@ const page = {
   main: {
 		daysContainer: document.getElementById('days'),
 		nextDay: document.querySelector('.habbit__day')
-	}
+	},
+  popup: document.querySelector('.cover')
 }
 
 /* utils */
@@ -156,6 +157,11 @@ function deleteDay(i) {
   });
   rerender(globalActiveHabbitId);
   saveData();
+}
+
+/* popup */
+function togglePopup() {
+  page.popup.classList.toggle('cover_hidden');
 }
 
 /* init */
