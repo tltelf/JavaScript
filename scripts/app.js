@@ -118,29 +118,54 @@ function rerender(activeHabbitId) {
 };
 
 /* work with days */
-function addDays(event) {
-  const form = event.target;
-  event.preventDefault();
-  console.log(event.target);  // Здесь выводится наша форма <form class="habbit__form"...
-  // В const data записываем данные нашей формы. FormData принимает форму, как HTML элемент
-  const data = new FormData(event.target);
-  console.log(data.get('comment'));  // Выводит данные, которые мы ввели в форму
-  form['comment'].classList.remove('error')
-  const comment = data.get('comment');
-  if (!comment) {
-    form['comment'].classList.add('error');
+function addDays(form) {
+  const data = validateAndGetFormData(form, ['comment']);
+  if (!data) {
     return;
   }
   habbits = habbits.map(habbit => {
     if (habbit.id === globalActiveHabbitId) {
       return {
         ...habbit,
-        days: habbit.days.concat([{ comment }])
+        days: habbit.days.concat([{ comment: data.comment }])
       }
     }
     return habbit;
   });
-  form['comment'].value = '';
+}
+
+function validateAndGetFormData(form, fields) {
+  const formData = new FormData(form);
+  const res = {};
+  for (const field of fields) {
+    const fieldValue = formData.get(field);
+    form[field].classList.remove('error');
+    if (!fieldValue) {
+      form[field].classList.add('error');
+    }
+    res[field] = fieldValue;
+  }
+  let isValid = true;
+  for (const field of fields) {
+    if (!res[field]) {
+      isValid = false;
+    }
+  }
+  if (!isValid) {
+    return;
+  }
+  return res;
+}
+
+function addDaysAndHabbit(event) {
+  event.preventDefault();
+  const form = event.target;
+  if (form.classList.contains('habbit__form')) {
+    addDays(form);
+  } else {
+    addHabbit(form);
+  }
+  form.reset();
   rerender(globalActiveHabbitId);
   saveData();
 }
@@ -171,6 +196,26 @@ function setIcon(context, icon) {
   const activeIcon = document.querySelector('.icon.icon_active');
   activeIcon.classList.remove('icon_active');
   context.classList.add('icon_active');
+}
+
+function addHabbit(form) {
+  const data = validateAndGetFormData(form, ['name', 'icon', 'target']);
+  if (!data) {
+    return;
+  }
+  // Получаем id так
+  const id = habbits.length + 1;
+  // Или вот так
+  // const maxId = habbits.reduce((acc, habbit) => acc > habbit.id ? acc : habbit.id, 0);
+  const newHabbit = {
+    id,
+    icon: data.icon,
+    name: data.name,
+    target: data.target,
+    days: []
+  };
+  habbits.push(newHabbit);
+  togglePopup();
 }
 
 /* init */

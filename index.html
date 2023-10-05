@@ -38,7 +38,7 @@
           <div id="days"></div>
           <div class='habbit'>
             <div class="habbit__day"></div>
-            <form class="habbit__form" onsubmit='addDays(event)'>
+            <form class="habbit__form" onsubmit='addDaysAndHabbit(event)'>
               <input name='comment' class='input_icon' type="text" placeholder='Комментарий'>
               <img class='input__icon' src="./images/comment.svg" alt="Иконка комментария">
               <button class='button' type='submit'>Готово</button>
@@ -64,7 +64,7 @@
               <img src="./images/close.svg" alt="Закрыть">
             </button>
           </div>
-          <form class='popup__form'>
+          <form class='popup__form' onsubmit='addDaysAndHabbit(event)'>
             <input type="text" name='name' placeholder='Название'>
             <input type="text" name='icon' hidden placeholder='Иконка' value='sport'>
             <input type="number" name='target' placeholder='Цель'>
