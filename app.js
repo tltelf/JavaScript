@@ -1,74 +1,60 @@
 'use strict';
 
-const mySet = new Set();
+const weatherMap = new Map();
+console.log(weatherMap); // Map(0) {size: 0}
 
-mySet.add(1);
-mySet.add(2);
-mySet.add(3);
+// Элементы добавляются в Map с помощью метода set():
+// weatherMap.set('London', '10');
+// weatherMap.set('Moscow', '7');
+// также мы можем использовать чеининг и добавлять элементы более коротко
+weatherMap.set('London', '10').set('Moscow', '7');
+console.log(weatherMap); // Map(2) {'London' => '10', 'Moscow' => '7'}
 
-console.log(mySet); // Set {1, 2, 3}
+// Значения можно получить с помощью метода get():
+console.log(weatherMap.get('Moscow')); // 7
+console.log(weatherMap.get('somekey')); // undefined
 
-mySet.add(2); // Дубликат будет проигнорирован
+// Метод has() позволяет проверить наличие ключа в Map:
+console.log(weatherMap.has('Moscow')); // true
+console.log(weatherMap.has('somekey')); // false
 
-console.log(mySet); // Set {1, 2, 3}
+// Элементы можно удалять с помощью метода delete():
+weatherMap.delete('London');
+console.log(weatherMap); // Map(1) {'Moscow' => '7'}
 
-mySet.delete(3);
+// Полностью очистить Map можно с помощью метода clear():
+weatherMap.clear();
+console.log(weatherMap); // Map(0) {size: 0}
 
-console.log(mySet); // Set {1, 2}
+// Ключи в Map могут быть не только строками, а любым типом данных
+weatherMap.set(1, 5).set(true, 'yes').set(false, 'no');
+console.log(weatherMap); // Map(3) {1 => 5, true => 'yes', false => 'no'}
 
-console.log(mySet.has(1)); // true
-console.log(mySet.has(4)); // false
+// При повторном применении set() с тем же ключом, у нас перезаписывается существующее значение
+weatherMap.set(true, 'YES!').set(false, 'no?');
+console.log(weatherMap); // Map(3) {1 => 5, true => 'YES!', false => 'no?'}
 
-mySet.forEach((value) => {
-  console.log(value);
-});
+// В качестве ключа могут быть также массивы и объекты
+weatherMap.set([1, 2, 3], 'array');
+console.log(weatherMap); // Map(4) {1 => 5, true => 'YES!', false => 'no?', Array(3) => 'array'}
 
-const flights = ['Russia', 'USA', 'London', 'London', 'USA', 1, false];
-// Внутрь сета передается любой итерируемый объект - это любой объект по которому
-// можно проходиться поэлементно. Это может быть массив, это может быть строка
-const setFlights = new Set(flights);
-console.log(setFlights); // Set(5) {'Russia', 'USA', 'London', 1, false}
+weatherMap.set({ a: 1 }, { b: 1 });
+console.log(weatherMap); // Map(5) {1 => 5, true => 'YES!', false => 'no?', Array(3) => 'array', {…} => {…}}
 
-// size: Возвращает количество элементов в Set.
-console.log(setFlights.size); // 5
+// Размер Map можно получить с помощью свойства size:
+console.log(weatherMap.size); // 5
 
-// has(value): Проверяет, существует ли элемент в Set.
-console.log(setFlights.has('Russia')); // true
-console.log(setFlights.has('s')); // false
+// Чтобы мы не получили undefined при обращении к ключу массива или объекта
+// нам нужно сначала создать объект или массив и указать его в качестве ключа в Map
+console.log(weatherMap.get([1, 2, 3])); // undefined
+console.log(weatherMap.get({ a: 1 })); // undefined
 
-// add(value): Добавляет элемент в Set, если его еще нет
-// принимает булево значение, число или строку
-setFlights.add('Paris');
-setFlights.add('Paris'); // Дубликат будет проигнорирован
-console.log(setFlights); // Set(6) {'Russia', 'USA', 'London', 1, false, 'Paris'}
+const weatherMap2 = new Map();
+console.log(weatherMap2); // Map(0) {size: 0}
 
-// delete(value): Удаляет элемент из Set.
-setFlights.delete('London');
-console.log(setFlights); // Set(5) {'Russia', 'USA', 1, false, 'Paris'}
+const arr = [1, 2, 3];
+weatherMap2.set(arr, 'array').set({ a: 1 }, 'obj');
+console.log(weatherMap2); // Map(2) {Array(3) => 'array', {…} => 'obj'}
 
-// перебор элементов
-for (const flight of setFlights) {
-  console.log(flight); // Russia   // USA   // 1   // false   // Paris
-}
-// или
-setFlights.forEach((value) => {
-  console.log(value); // Russia   // USA   // 1   // false   // Paris
-});
-
-// Из сета в массив с помощью spread синтаксиса
-console.log([...setFlights]); // (5) ['Russia', 'USA', 1, false, 'Paris']
-
-// Мы можем получить сет объектов, но уникальности у них не будет
-const setObj = new Set([{ a: 1 }, { b: 2 }, { b: 2 }]);
-console.log(setObj); // Set(3) {{a: 1}, {b: 2}, {b: 2}}
-
-// Мы можем создать сет не только из массива, но и из строки
-console.log(new Set('abcd')); // Set(4) {'a', 'b', 'c', 'd'}
-
-// Но если мы возьмем неитерабельный объект, то получим ошибку
-// console.log(new Set({ a: 1 }));    // Uncaught TypeError: object is not iterable
-// console.log(new Set(false));    // Uncaught TypeError: boolean false is not iterable
-
-// clear(): Удаляет все элементы из Set.
-setFlights.clear();
-console.log(setFlights); // Set(0) {size: 0}
+console.log(weatherMap2.get(arr)); // array
+console.log(weatherMap2.get({ a: 1 })); // undefined
