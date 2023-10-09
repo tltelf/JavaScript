@@ -1,22 +1,16 @@
 'use strict';
-
+/* Необходимо поменять местами ключи и значения в следующем Map */
 const weatherMap = new Map([
   ['London', 10],
   ['Moscow', 7],
   ['Paris', 14],
 ]);
+console.log(weatherMap); // Map(3) {'London' => 10, 'Moscow' => 7, 'Paris' => 14}
 
-// Итерация по Map
-for (const [key, value] of weatherMap) {
-  console.log(key); // London       // Moscow       // Paris
-  console.log(value); // 10           // 7            // 14
-}
+const reverseArrayWeatherMap = [...weatherMap].map((i) => i.reverse());
+const reverseWeatherMap = new Map(reverseArrayWeatherMap);
+console.log(reverseWeatherMap); // Map(3) {10 => 'London', 7 => 'Moscow', 14 => 'Paris'}
 
-// Из Map в массив
-console.log([...weatherMap]); // [['london', 10], ['moscow', 7], ['paris', 14]];
-
-console.log(weatherMap.keys()); // MapIterator {'London', 'Moscow', 'Paris'}
-console.log(weatherMap.values()); // MapIterator {10, 7, 14}
-
-console.log([...weatherMap.keys()]); // ['London', 'Moscow', 'Paris']
-console.log([...weatherMap.values()]); // [10, 7, 14]
+// Можно записать еще более коротко
+const reverseWeatherMap2 = new Map([...weatherMap].map((i) => i.reverse()));
+console.log(reverseWeatherMap2); // Map(3) {10 => 'London', 7 => 'Moscow', 14 => 'Paris'}
