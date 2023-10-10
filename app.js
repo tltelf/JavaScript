@@ -1,17 +1,11 @@
 'use strict';
 
-console.log(15 / 2); // 7.5
-console.log(15 % 2); // 1
-console.log(14 % 2); // 0
+const bigNum1 = 350_500_000;
+const bigNum2 = 350500000;
 
-const isEven = (n) => n % 2 === 0;
-const isOdd = (n) => n % 2 === 1;
-function isEvenFunc(n) {
-  return n % 2 === 0;
-}
+const payment = 20_10;
+const paymentInR = 20.1;
+const paymentInR2 = 2_0.1_0;
 
-console.log(isEven(17)); // false
-console.log(isEven(12)); // true
-
-console.log(isOdd(17)); // true
-console.log(isOdd(12)); // false
+console.log(Number('350_500_000')); // NaN
+console.log(Number('350500000')); // 350500000
