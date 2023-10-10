@@ -1,28 +1,17 @@
 'use strict';
 
-/*
-	Написать функцию, которая принимает min и max
-	и возвращает случайное целое число между ними, включая их
-*/
+console.log(15 / 2); // 7.5
+console.log(15 % 2); // 1
+console.log(14 % 2); // 0
 
-// Правильное решение
-function getRandom(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+const isEven = (n) => n % 2 === 0;
+const isOdd = (n) => n % 2 === 1;
+function isEvenFunc(n) {
+  return n % 2 === 0;
 }
-console.log(getRandom(1, 20));
 
-// Пробное решение
-// function getRandom(min, max) {
-//   // let randomNum = (Number(Math.random().toFixed(2)) * 100).toFixed(0);
-//   let randomNum = Number((Number(Math.random().toFixed(2)) * 100).toFixed(0));
-//   if (randomNum > max) {
-//     randomNum = max;
-//     console.log(randomNum);
-//   } else if (randomNum < max && randomNum > min) {
-//     console.log(randomNum);
-//   } else {
-//     console.log(min);
-//   }
-// }
+console.log(isEven(17)); // false
+console.log(isEven(12)); // true
 
-// getRandom(1, 50);
+console.log(isOdd(17)); // true
+console.log(isOdd(12)); // false
