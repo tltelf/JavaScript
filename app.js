@@ -1,37 +1,29 @@
 'use strict';
 
-console.log(10 === 10.0); // true
-// Числа хранятся в бинарном формате "0 1"
-console.log(0.1 + 0.2 === 0.3); // false
-console.log(0.1 + 0.2); // 0.30000000000000004
+console.log(Math.sqrt(36)); // 6
+console.log(36 ** (1 / 2)); // 6
+console.log(Math.cbrt(27)); // 3
 
-// Получаем число из строки
-console.log(Number('10')); // 10
-console.log(+'20'); // 20
-console.log(Number.parseInt('10', 10)); // 10
-console.log(Number.parseInt('10 sec', 10)); // 10
-console.log(Number.parseInt('sec 10', 10)); // NaN
+console.log(16 ** (1 / 4)); // 2
+console.log(Math.pow(16, 1 / 4)); // 2
 
-console.log(Number.parseInt('10.5', 10)); // 10
-console.log(Number.parseInt('10.5 sec', 10)); // 10
-console.log(Number.parseInt('sec 10.5', 10)); // NaN
+console.log(Math.sign(-100)); // -1
+console.log(Math.sign(35)); // 1
 
-// parseFloat
-console.log(Number.parseFloat('10.5', 10)); // 10.5
-console.log(Number.parseFloat('10.5 sec', 10)); // 10.5
-console.log(Number.parseFloat('sec 10.5', 10)); // NaN
+console.log(Math.abs(-100)); // 100
+console.log(Math.abs(100)); // 100
 
-// Проверяем число или не число
-// isNaN, если не число, выдает true
-console.log(Number.isNaN(Number('10sdfs'))); // true
-console.log(Number.isNaN(10 / 0)); // false
-console.log(10 / 0); // Infinity
+console.log(Math.exp(3)); // 20.085536923187668
 
-// isFinite, если не число, выдает false
-console.log(Number.isFinite(10 / 0)); // false
-console.log(Number.isFinite(Number('10sdfs'))); // false
-console.log(Number.isFinite(10)); // true
+console.log(Math.max(1, -2, 10, 0, 19)); // 19
+console.log(Math.max(1, -2, '10', true, '19')); // 19
+console.log(Math.max(1, -2, '10', true, '19s')); // NaN
 
-// Если нужно отловить дробное число
-console.log(Number.isInteger(10)); // true
-console.log(Number.isInteger(10.4)); // false
+console.log(Math.min(1, -2, '10', true, '19')); // -2
+
+const arr = [1, -2, 10, 0, 19];
+console.log(Math.max(arr)); // NaN
+// С помощью spread оператора наш массив преобразовался в аргументы функции max()
+console.log(Math.max(...arr)); // 19
+
+console.log(Math.random());
