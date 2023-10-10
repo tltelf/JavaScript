@@ -1,29 +1,38 @@
 'use strict';
 
-const max = 2 ** 53 - 1;
-console.log(Number.MAX_SAFE_INTEGER); // 9007199254740991
-console.log(Number.MIN_SAFE_INTEGER); // -9007199254740991
-console.log(max + 1); // 9007199254740992
-console.log(max + 2); // 9007199254740992
-console.log(max + 3); // 9007199254740994
-console.log(max + 4); // 9007199254740996
+const options1 = {
+  style: 'currency',
+  currency: 'RUB',
+};
 
-console.log(232345325235432352784390n); // 232345325235432352784390n
-console.log(BigInt(232345325235432352784390)); // 232345325235432343994368n
-console.log(BigInt('232345325235432352784390')); // 232345325235432352784390n
+const options2 = {
+  style: 'currency',
+  currency: 'RUB',
+  useGrouping: false,
+};
 
-console.log(10n + 10n); // 20n
-console.log(10n + BigInt(10)); // 20n
-console.log(10n * 10n); // 100n
+const options3 = {
+  style: 'currency',
+  currency: 'USD',
+};
 
-console.log(232345325235432352784390n * 232345325235432352784390n);
-// 53984350158758838101835891691093469785827672100n
+const options4 = {
+  style: 'decimal',
+};
 
-console.log(10n * BigInt(10)); // 100n
-console.log(10 / 3); // 3.3333333333333335
-console.log(10n / 3n); // 3n
+const options5 = {
+  style: 'percent',
+};
 
-console.log(10n < 20); // true
-console.log(10n == 10); // true
-console.log(10n === 10); // false
-console.log(typeof 10n); // bigint
+const options6 = {
+  style: 'unit',
+  unit: 'celsius',
+};
+
+console.log(23000); // 23000
+console.log(new Intl.NumberFormat('ru-RU', options1).format(23000)); // 23 000,00 ₽
+console.log(new Intl.NumberFormat('ru-RU', options2).format(23000)); // 23000,00 ₽
+console.log(new Intl.NumberFormat('en-US', options3).format(23000)); // $23,000.00
+console.log(new Intl.NumberFormat('ar-SY', options4).format(23000)); // ٢٣٬٠٠٠٫٠٠ US$
+console.log(new Intl.NumberFormat('ru-RU', options5).format(0.1)); // 10 %
+console.log(new Intl.NumberFormat('ru-RU', options6).format(25)); // 25 °C
