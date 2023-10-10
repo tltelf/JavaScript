@@ -1,26 +1,28 @@
 'use strict';
 
-// Math.round округляет до ближайшего целого числа
-console.log(Math.round(1.4)); // 1
-console.log(Math.round(1.6)); // 2
-console.log(Math.round(1.5)); // 2
-console.log(Math.round(1.4999)); // 1
+/*
+	Написать функцию, которая принимает min и max
+	и возвращает случайное целое число между ними, включая их
+*/
 
-// Math.ceil округляет до верхнего значения
-console.log(Math.ceil(1.1)); // 2
-console.log(Math.ceil(1)); // 1
-console.log(Math.ceil(0.1)); // 1
+// Правильное решение
+function getRandom(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+console.log(getRandom(1, 20));
 
-// Math.floor округляет до нижнего значения
-console.log(Math.floor(2.1)); // 2
-console.log(Math.floor(2.9)); // 2
+// Пробное решение
+// function getRandom(min, max) {
+//   // let randomNum = (Number(Math.random().toFixed(2)) * 100).toFixed(0);
+//   let randomNum = Number((Number(Math.random().toFixed(2)) * 100).toFixed(0));
+//   if (randomNum > max) {
+//     randomNum = max;
+//     console.log(randomNum);
+//   } else if (randomNum < max && randomNum > min) {
+//     console.log(randomNum);
+//   } else {
+//     console.log(min);
+//   }
+// }
 
-// Math.trunc обрезает до целого
-console.log(Math.trunc(2.9)); // 2
-console.log(Math.trunc(2.1)); // 2
-console.log(Math.trunc(1.11111)); // 1
-
-// toFixed() округление до определенного числа знаков после запятой и возвращение строки
-console.log((1.4999).toFixed(1)); // '1.5'
-// Чтобы вернуть строку, можно преобразовать с помощью Number()
-console.log(Number((1.4999).toFixed(1))); // 1.5
+// getRandom(1, 50);
