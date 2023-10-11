@@ -1,86 +1,33 @@
 'use strict';
 
-/*
-	Напишите функцию, которая принимает 3 параметра:
-	- Сумма
-	- Валюта исходная
-	- Валюта для конвертации
-	И возвращает строку уже сконвертированной суммы с постфиксом
-	валюты. Если не смог, то null.
-	Для примера 3 валюты.
-*/
+const now = new Date();
+console.log(now); // Wed Oct 11 2023 19:31:39 GMT+0400 (Самарское стандартное время)
 
-function convert(amount, fromCurrency, toCurrency) {
-  const convertCourse = {
-    RUB: {
-      USD: 0.009971,
-      EUR: 0.00941,
-    },
-    USD: {
-      RUB: 100.2955,
-      EUR: 0.9438,
-    },
-    EUR: {
-      RUB: 106.2677,
-      USD: 1.0595,
-    },
-  };
-  if (
-    !convertCourse[fromCurrency] ||
-    !convertCourse[fromCurrency][toCurrency]
-  ) {
-    return null;
-  }
-  const sum = (amount * convertCourse[fromCurrency][toCurrency]).toFixed(2);
-  return new Intl.NumberFormat('ru-RU', {
-    style: 'currency',
-    currency: toCurrency,
-  }).format(sum);
-}
+console.log(new Date('02-01-2023')); // Wed Feb 01 2023 00:00:00 GMT+0400 (Самарское стандартное время)
+console.log(new Date('02/01/2023')); // Wed Feb 01 2023 00:00:00 GMT+0400 (Самарское стандартное время)
+console.log(new Date('2023/01/02')); // Mon Jan 02 2023 00:00:00 GMT+0400 (Самарское стандартное время)
+console.log(new Date('10 Jan 2023')); // Tue Jan 10 2023 00:00:00 GMT+0400 (Самарское стандартное время)
+console.log(new Date('10 янв 2023')); // Invalid Date
+console.log(new Date('Wed Oct 11 2023 23:03:40')); // Wed Oct 11 2023 23:03:40 GMT+0400 (Самарское стандартное время)
 
-console.log(convert(100, 'USD', 'RUB')); // 10 029,55 ₽
-console.log(convert(100, 'EUR', 'RUB')); // 10 626,77 ₽
-console.log(convert(1000, 'EUR', 'USD')); // 1 059,50 $
-console.log(convert(1000, 'EUR', 'RUB')); // 106 267,70 ₽
-console.log(convert(50000, 'RUB', 'USD')); // 498,55 $
+console.log(new Date(2024, 10, 20)); // Wed Nov 20 2024 00:00:00 GMT+0400 (Самарское стандартное время)
+console.log(new Date(2023, 11, 31)); // Sun Dec 31 2023 00:00:00 GMT+0400 (Самарское стандартное время)
+console.log(new Date(1996, 11, 31, 19, 31, 0)); // Sun Dec 31 2023 00:00:00 GMT+0400 (Самарское стандартное время)
+console.log(new Date(2023, 11, 52)); // Sun Jan 21 2024 00:00:00 GMT+0400 (Самарское стандартное время)
+console.log(new Date(2023, 11, 52 + 78)); // Mon Apr 08 2024 00:00:00 GMT+0400 (Самарское стандартное время)
+console.log(new Date(0)); // Thu Jan 01 1970 04:00:00 GMT+0400 (Самарское стандартное время)
+console.log(new Date(1 * 24 * 60 * 60 * 1000)); // Fri Jan 02 1970 04:00:00 GMT+0400 (Самарское стандартное время)
+console.log(Date.now()); // 1697051788994
+console.log(new Date(Date.now())); // Wed Oct 11 2023 23:16:28 GMT+0400 (Самарское стандартное время)
 
-console.log(convert(1000, 'TG', 'USD')); // null
-console.log(convert(100, 'USD', 'GB')); // null
+console.log(now.getFullYear()); // 2023
+console.log(now.getMonth()); // 9
+console.log(now.getDate()); // 11
+console.log(now.getDay()); // 3
+console.log(now.getHours()); // 23
+console.log(now.getMinutes()); // 21
+console.log(now.getTime()); // 1697052131268
 
-function convertCurrency(amount, fromCurrency, toCurrency) {
-  // Статический набор курсов обмена валют
-  const exchangeRates = {
-    USD: {
-      EUR: 0.85,
-      GBP: 0.72,
-    },
-    EUR: {
-      USD: 1.18,
-      GBP: 0.85,
-    },
-    GBP: {
-      USD: 1.39,
-      EUR: 1.17,
-    },
-  };
-
-  // Проверяем, есть ли курс обмена для указанных валют
-  if (
-    !exchangeRates[fromCurrency] ||
-    !exchangeRates[fromCurrency][toCurrency]
-  ) {
-    return null;
-  }
-
-  // Выполняем конвертацию
-  const convertedAmount = amount * exchangeRates[fromCurrency][toCurrency];
-
-  // Возвращаем строку с конвертированной суммой и валютой
-  return `${convertedAmount.toFixed(2)} ${toCurrency}`;
-}
-
-// Примеры использования:
-console.log(convertCurrency(100, 'USD', 'EUR')); // "85.00 EUR"
-console.log(convertCurrency(50, 'EUR', 'GBP')); // "42.50 GBP"
-console.log(convertCurrency(75, 'GBP', 'USD')); // "104.25 USD"
-console.log(convertCurrency(100, 'USD', 'JPY')); // null
+console.log(now.setFullYear(2030)); // 1917976990753
+console.log(new Date(now.setFullYear(2030))); // Fri Oct 11 2030 23:24:01 GMT+0400 (Самарское стандартное время)
+console.log(new Date(now.setMonth(10))); // Mon Nov 11 2030 23:25:12 GMT+0400 (Самарское стандартное время)
