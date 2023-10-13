@@ -1,14 +1,20 @@
 'use strict';
 
-const date1 = new Date(2024, 10, 15);
-const date2 = new Date(2024, 11, 15);
-console.log(date1); // Fri Nov 15 2024 00:00:00 GMT+0400 (Самарское стандартное время)
-console.log(Number(date1)); // 1731614400000
-console.log(Number(date2)); // 1734206400000
-console.log(date2 - date1); // 2592000000
+const first = new Date(2024, 10, 4);
+const second = new Date(2024, 10, 3);
 
-function getDaysBetweenDates(date1, date2) {
-  return (date2 - date1) / (1000 * 60 * 60 * 24);
-}
+const third = new Date(2024, 10, 10);
+const fourth = new Date(2024, 10, 10);
 
-console.log(getDaysBetweenDates(date1, date2)); // 30
+console.log(first.getTime()); // 1730664000000
+console.log(first.getTime() > second.getTime()); // true
+console.log(first > second); // true
+console.log(first < second); // false
+
+console.log(third == fourth); // false потому что сравниваются ссылки на объекты, а не сами объекты
+console.log(third === fourth); // false
+
+console.log(third.getTime() == fourth.getTime()); // true
+console.log(third.getTime() === fourth.getTime()); // true
+console.log(Number(third) === Number(fourth)); // true
+console.log(+third === +fourth); // true
