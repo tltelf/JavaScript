@@ -1,31 +1,52 @@
 'use strict';
 
-const Book = function (title, author) {
-  this.author = author;
-  this.title = title;
-  this.isRead = false;
+/*
+	Реализовать на функциях и прототипах корзину товаров с методами
+	- Добавить товар
+	- Увеличить число товаров
+	- Уменьшить число товаров (удалить если их 0)
+*/
+const product = { id: 1, name: 'Bread', count: 1 };
+
+const Cart = function () {
+  this.products = [];
+};
+Cart.prototype.addProduct = function (product) {
+  if (this.products.find((product) => product.id === product.id)) {
+    return;
+  }
+  this.products.push(product);
 };
 
-Book.prototype.read = function () {
-  this.isRead = true;
+Cart.prototype.increaseAmount = function (id) {
+  this.products = this.products.map((product) => {
+    if (product.id == id) {
+      product.count++;
+      return product;
+    }
+    return product;
+  });
 };
 
-Book.prototype.cover = 'Paper';
+Cart.prototype.decreaseAmount = function (id) {
+  this.products = this.products
+    .map((product) => {
+      if (product.id == id) {
+        product.count--;
+        return product;
+      }
+      return product;
+    })
+    .filter((product) => product.count > 0);
+};
 
-const lordOftheRing = new Book('Lord of the ring', 'Tolkien');
-lordOftheRing.read();
+const cart = new Cart();
+cart.addProduct(product);
+cart.increaseAmount(1);
+cart.decreaseAmount(1);
+cart.decreaseAmount(1);
+console.log(cart);
 
-console.log(lordOftheRing); // Book {author: 'Tolkien', title: 'Lord of the ring', isRead: true}
-console.log(lordOftheRing.cover); // Paper
-console.log(lordOftheRing.hasOwnProperty('cover')); // false
-console.log(lordOftheRing.hasOwnProperty('author')); // true
-
-console.log(lordOftheRing.__proto__); // {cover: 'Paper', read: ƒ, constructor: ƒ}
-console.log(lordOftheRing.__proto__ === Book.prototype); // true
-console.log(Book.prototype.isPrototypeOf(lordOftheRing)); // true
-console.log(Book.prototype.isPrototypeOf(Book)); // false
-
-Array.prototype.first = function () {};
-
-const a = [5];
-a.first;
+const cart2 = new Cart();
+cart2.addProduct(product);
+console.log(cart2);
