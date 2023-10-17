@@ -1,52 +1,30 @@
 'use strict';
 
-/*
-	Реализовать на функциях и прототипах корзину товаров с методами
-	- Добавить товар
-	- Увеличить число товаров
-	- Уменьшить число товаров (удалить если их 0)
-*/
-const product = { id: 1, name: 'Bread', count: 1 };
-
-const Cart = function () {
-  this.products = [];
-};
-Cart.prototype.addProduct = function (product) {
-  if (this.products.find((product) => product.id === product.id)) {
-    return;
-  }
-  this.products.push(product);
+// Создаем функцию-конструктор Book, принимающую title и author в качестве параметров
+const Book = function (title, author) {
+  this.author = author;
+  this.title = title;
 };
 
-Cart.prototype.increaseAmount = function (id) {
-  this.products = this.products.map((product) => {
-    if (product.id == id) {
-      product.count++;
-      return product;
-    }
-    return product;
-  });
-};
+// Добавляем свойство isRead к прототипу Book, доступное для всех объектов, созданных с Book
+Book.prototype.isRead = false;
 
-Cart.prototype.decreaseAmount = function (id) {
-  this.products = this.products
-    .map((product) => {
-      if (product.id == id) {
-        product.count--;
-        return product;
-      }
-      return product;
-    })
-    .filter((product) => product.count > 0);
-};
+// Создаем объект lordOftheRings с использованием функции-конструктора Book
+const lordOftheRings = new Book('1', '1');
 
-const cart = new Cart();
-cart.addProduct(product);
-cart.increaseAmount(1);
-cart.decreaseAmount(1);
-cart.decreaseAmount(1);
-console.log(cart);
+// Выводим в консоль различные прототипы и объекты
 
-const cart2 = new Cart();
-cart2.addProduct(product);
-console.log(cart2);
+// Прототип Book, содержащий свойство isRead
+console.log(Book.prototype);
+
+// Прототип функции-конструктора Book, указывающий на Function.prototype
+console.log(Book.__proto__);
+
+// Прототип объекта lordOftheRings, указывающий на прототип Book
+console.log(lordOftheRings.__proto__);
+
+// Прототип Book.prototype, указывающий на Object.prototype
+console.log(Book.prototype.__proto__);
+
+// Прототип всех объектов, указывающий на null (вершина цепочки прототипов)
+console.log(Object.prototype.__proto__);
