@@ -1,30 +1,46 @@
 'use strict';
 
-// Создаем функцию-конструктор Book, принимающую title и author в качестве параметров
+// Создаем функцию-конструктор Book
 const Book = function (title, author) {
+  // Инициализируем свойства объекта
   this.author = author;
   this.title = title;
+  this.isRead = false; // Устанавливаем свойство isRead в false
 };
 
-// Добавляем свойство isRead к прототипу Book, доступное для всех объектов, созданных с Book
-Book.prototype.isRead = false;
+// Добавляем метод read к прототипу объекта Book
+Book.prototype.read = function () {
+  this.isRead = true; // Метод помечает книгу как прочитанную
+};
 
-// Создаем объект lordOftheRings с использованием функции-конструктора Book
-const lordOftheRings = new Book('1', '1');
+// Создаем класс BookClass
+class BookClass {
+  isRead = false; // Свойство isRead
 
-// Выводим в консоль различные прототипы и объекты
+  constructor(title, author) {
+    // Инициализируем свойства объекта
+    this.author = author;
+    this.title = title;
+  }
 
-// Прототип Book, содержащий свойство isRead
-console.log(Book.prototype);
+  read() {
+    this.isRead = true; // Метод помечает книгу как прочитанную
+  }
+}
 
-// Прототип функции-конструктора Book, указывающий на Function.prototype
-console.log(Book.__proto__);
+// Создаем экземпляр объекта lordOftheRings с использованием класса BookClass
+const lordOftheRings = new BookClass('lordOftheRings', 'Tolkien');
 
-// Прототип объекта lordOftheRings, указывающий на прототип Book
+// Проверяем, принадлежит ли lordOftheRings классу BookClass
+console.log(lordOftheRings instanceof BookClass);
+
+// Вызываем метод read для объекта lordOftheRings
+
+lordOftheRings.read();
+
+// Выводим в консоль прототип объекта lordOftheRings.
+// В данном случае, он указывает на прототип класса BookClass.
 console.log(lordOftheRings.__proto__);
 
-// Прототип Book.prototype, указывающий на Object.prototype
-console.log(Book.prototype.__proto__);
-
-// Прототип всех объектов, указывающий на null (вершина цепочки прототипов)
-console.log(Object.prototype.__proto__);
+// Определяем анонимный класс BookClass2
+const BookClass2 = class {};
