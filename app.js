@@ -40,6 +40,8 @@ class Ork extends Enemy {
   }
 }
 
+class Troll extends Enemy {}
+
 class Sword {
   constructor(damage) {
     this.damage = damage;
@@ -51,6 +53,7 @@ class Sword {
 }
 
 const ork = new Ork(300);
+const troll = new Troll(200);
 const sword = new Sword(30);
 const enemy = new Enemy(100);
 console.log(ork);
@@ -58,59 +61,6 @@ console.log(enemy);
 sword.makeDamage(ork);
 sword.makeDamage(ork);
 sword.makeDamage(ork);
+sword.makeDamage(troll);
+sword.makeDamage(troll);
 sword.makeDamage(enemy);
-
-/* Второй способ */
-
-// Класс Врага
-class Enemy2 {
-  constructor(health) {
-    this.health = health;
-  }
-
-  // Метод для получения урона
-  takeDamage(damage) {
-    this.health -= damage;
-    console.log(`Враг получил ${damage} урона. Здоровье врага: ${this.health}`);
-  }
-}
-
-// Класс Меча
-class Sword2 {
-  constructor(power) {
-    this.power = power;
-  }
-
-  // Метод для нанесения урона
-  attack(target) {
-    console.log(`Меч атакует врага.`);
-    target.takeDamage(this.power);
-  }
-}
-
-// Класс Орка
-class Orc2 {
-  constructor() {
-    this.probability = 0.5; // 50% вероятность не получить урон
-    this.health = 100;
-  }
-
-  // Метод для получения урона
-  takeDamage(damage) {
-    if (Math.random() < this.probability) {
-      console.log('Орк уклонился от атаки и не получил урон!');
-    } else {
-      this.health -= damage;
-      console.log(`Орк получил ${damage} урона. Здоровье орка: ${this.health}`);
-    }
-  }
-}
-
-// Пример использования классов
-const enemy2 = new Enemy2(200);
-const sword2 = new Sword2(50);
-const orc2 = new Orc2();
-
-sword2.attack(enemy); // Меч атакует врага и наносит 50 урона
-orc2.takeDamage(30); // Орк получает урон
-orc2.takeDamage(40); // Орк уклоняется от урона (50% вероятность)
