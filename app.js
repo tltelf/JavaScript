@@ -1,66 +1,46 @@
 'use strict';
 
-/*
-	Сделать класс врага со здоровьем и методом получения урона
-	Сделать класс меча, который имеет силу и метод нанесения
-	урона.
-	Сделать класс орка, который в 50% случаев не получает урон.
-*/
+const arr = [1, 2, 3];
+arr
+  .map((a) => a * 2)
+  .filter((a) => a > 0)
+  .find((a) => a < 100);
 
-class Enemy {
-  constructor(health) {
-    this.health = health;
+class Wallet {
+  balance = 0;
+
+  add(sum) {
+    this.balance += sum;
+    return this;
   }
 
-  takeDamage(dmg) {
-    this.health = this.health - dmg;
-    console.log(
-      `Нанесено ${dmg} урона врагу. Осталось ${this.health} здоровья`
-    );
-  }
-}
-
-class Ork extends Enemy {
-  constructor(health) {
-    super(health);
-  }
-
-  takeDamage(dmg) {
-    const randomNumber = Math.random();
-    if (randomNumber < 0.5) {
-      // Вероятность 50%: выполнить этот код, если случайное число меньше 0.5
-      this.health = this.health - dmg;
-      console.log(
-        `Нанесено ${dmg} урона Орку. Осталось ${this.health} здоровья`
-      );
-    } else {
-      // Вероятность 50%: выполнить этот код, если случайное число больше или равно 0.5
-      console.log(`Промах по Орку`);
-    }
+  remove(sum) {
+    this.balance -= sum;
+    return this;
   }
 }
 
-class Troll extends Enemy {}
+const wallet = new Wallet();
+const res = wallet.add(100).remove(10).add(30);
+console.log(res); // Wallet {balance: 90}
 
-class Sword {
-  constructor(damage) {
-    this.damage = damage;
+class Builder {
+  house = {};
+
+  addRoof() {
+    this.house.roof = 'Roof';
+    return this;
   }
 
-  makeDamage(enemy) {
-    enemy.takeDamage(this.damage);
+  addFloor() {
+    this.house.floor = 'Floor';
+    return this;
+  }
+
+  execute() {
+    return this.house;
   }
 }
 
-const ork = new Ork(300);
-const troll = new Troll(200);
-const sword = new Sword(30);
-const enemy = new Enemy(100);
-console.log(ork);
-console.log(enemy);
-sword.makeDamage(ork);
-sword.makeDamage(ork);
-sword.makeDamage(ork);
-sword.makeDamage(troll);
-sword.makeDamage(troll);
-sword.makeDamage(enemy);
+const res2 = new Builder().addRoof().addFloor().execute();
+console.log(res2); // {roof: 'Roof', floor: 'Floor'}
