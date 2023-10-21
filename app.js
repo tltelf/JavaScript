@@ -1,29 +1,54 @@
 'use strict';
 
-/* Принцип подстановки Барбары Лисков
-  (Liskov Substitution Principle, LSP):
-  наследующий класс должен дополнять, а не замещать поведение базового класса.
+/* Принцип разделения интерфейса
+  (Interface Segregation Principle, ISP):
+  клиенты не должны зависеть от интерфейсов, которые они не используют.
 */
 
-class User {
-  #role = 'user';
+// Правильно
 
-  getRole() {
-    return this.#role;
+class Weapon {
+  cost;
+
+  dealDamage() {}
+}
+
+class Rifle extends Weapon {
+  shoot() {
+    this.dealDamage();
   }
 }
 
-class Admin extends User {
-  #role = ['user', 'admin'];
-
-  getRole() {
-    return this.#role.join(', ');
+class Sword extends Weapon {
+  strike() {
+    this.dealDamage();
   }
 }
 
-function logRole(user) {
-  console.log('Role: ' + user.getRole().toUpperCase());
+// Неправильно
+
+class Weapon2 {
+  strike() {}
+
+  shoot() {}
 }
 
-logRole(new User());
-logRole(new Admin());
+class Rifle2 extends Weapon2 {
+  strike() {
+    // Удар неэффективен для винтовки
+  }
+
+  shoot() {
+    // Выстрел эффективен для винтовки
+  }
+}
+
+class Sword2 extends Weapon2 {
+  strike() {
+    // Удар эффективен для меча
+  }
+
+  shoot() {
+    // Выстрел неэффективен для меча
+  }
+}
