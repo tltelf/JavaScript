@@ -1,29 +1,47 @@
 'use strict';
 
-/* Принцип единственной ответственности 
-  (Single Responsibility Principle - SRP):
-  класс должен быть ответственным только за одну важную функциональность или задачу.
+/* Принцип открытости/закрытости 
+  (Open/Closed Principle, OCP):
+  классы должны быть открытыми для расширения, но закрытыми для изменения.
 */
 
-class Character {
-  #inventory = [];
-  #health = 10;
+class Treasure {
+  value = 0;
+}
 
-  pickItem(item) {
-    this.#inventory.push(item);
-  }
+class Coin extends Treasure {
+  value = 1;
+}
 
-  recieveDamage(damage) {
-    this.#health -= damage;
+class Crystal extends Treasure {
+  value = 10;
+}
+
+class Brilliant extends Treasure {
+  value = 20;
+}
+
+// Правильно
+class Inventory {
+  #score;
+  pick(treasure) {
+    this.#score += treasure.value;
   }
 }
 
-class DB {
-  save(item) {
-    localStorage.setItem('char', item);
-  }
-
-  load() {
-    ///...
+// Неправильно
+class Inventory2 {
+  #score;
+  pick(treasure) {
+    if (treasure instanceof Coin) {
+      this.#score += 1;
+    }
+    if (treasure instanceof Crystal) {
+      this.#score += 10;
+    }
+    /* При добавлении бриллианта в игру,
+       придется добавлять дополнительную логику в класс, 
+       в отличии от первого способа
+    */
   }
 }
