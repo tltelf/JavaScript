@@ -1,47 +1,29 @@
 'use strict';
 
-/* Принцип открытости/закрытости 
-  (Open/Closed Principle, OCP):
-  классы должны быть открытыми для расширения, но закрытыми для изменения.
+/* Принцип подстановки Барбары Лисков
+  (Liskov Substitution Principle, LSP):
+  наследующий класс должен дополнять, а не замещать поведение базового класса.
 */
 
-class Treasure {
-  value = 0;
-}
+class User {
+  #role = 'user';
 
-class Coin extends Treasure {
-  value = 1;
-}
-
-class Crystal extends Treasure {
-  value = 10;
-}
-
-class Brilliant extends Treasure {
-  value = 20;
-}
-
-// Правильно
-class Inventory {
-  #score;
-  pick(treasure) {
-    this.#score += treasure.value;
+  getRole() {
+    return this.#role;
   }
 }
 
-// Неправильно
-class Inventory2 {
-  #score;
-  pick(treasure) {
-    if (treasure instanceof Coin) {
-      this.#score += 1;
-    }
-    if (treasure instanceof Crystal) {
-      this.#score += 10;
-    }
-    /* При добавлении бриллианта в игру,
-       придется добавлять дополнительную логику в класс, 
-       в отличии от первого способа
-    */
+class Admin extends User {
+  #role = ['user', 'admin'];
+
+  getRole() {
+    return this.#role.join(', ');
   }
 }
+
+function logRole(user) {
+  console.log('Role: ' + user.getRole().toUpperCase());
+}
+
+logRole(new User());
+logRole(new Admin());
