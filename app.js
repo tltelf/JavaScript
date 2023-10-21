@@ -1,54 +1,48 @@
 'use strict';
 
-/* Принцип разделения интерфейса
-  (Interface Segregation Principle, ISP):
-  клиенты не должны зависеть от интерфейсов, которые они не используют.
+/* Принцип инверсии зависимостей
+  (Dependency Inversion Principle - DIP):
+  зависимости внутри системы должны строиться относительно абстракций, а не конкретных классов.
 */
 
-// Правильно
-
-class Weapon {
-  cost;
-
-  dealDamage() {}
-}
-
-class Rifle extends Weapon {
-  shoot() {
-    this.dealDamage();
+class DB {
+  save(items) {
+    console.log(`Saved: ${items}`);
   }
 }
 
-class Sword extends Weapon {
-  strike() {
-    this.dealDamage();
+class MongoDB extends DB {
+  save(items) {
+    console.log(`Saved to Mongo: ${items}`);
   }
 }
 
-// Неправильно
+// Здесь ToDoList не зависит от конкретной базы данных
+class ToDoList {
+  items = [1, 2, 3];
+  db;
 
-class Weapon2 {
-  strike() {}
-
-  shoot() {}
-}
-
-class Rifle2 extends Weapon2 {
-  strike() {
-    // Удар неэффективен для винтовки
+  constructor(db) {
+    this.db = db;
   }
 
-  shoot() {
-    // Выстрел эффективен для винтовки
+  saveToDb() {
+    this.db.save(this.items);
   }
 }
 
-class Sword2 extends Weapon2 {
-  strike() {
-    // Удар эффективен для меча
-  }
+const list = new ToDoList(new DB());
+list.saveToDb(); // Saved: 1,2,3
+const list2 = new ToDoList(new MongoDB());
+list2.saveToDb(); // Saved to Mongo: 1,2,3
 
-  shoot() {
-    // Выстрел неэффективен для меча
+// Здесь ToDoList зависит от конкретной базы данных
+// и чтобы её поменять, придется менять код
+class ToDoList2 {
+  items = [1, 2, 3];
+  db = new DB();
+
+  saveToDb() {
+    this.db.save(this.items);
   }
 }
