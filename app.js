@@ -1,46 +1,29 @@
 'use strict';
 
-const arr = [1, 2, 3];
-arr
-  .map((a) => a * 2)
-  .filter((a) => a > 0)
-  .find((a) => a < 100);
+/* Принцип единственной ответственности 
+  (Single Responsibility Principle - SRP):
+  класс должен быть ответственным только за одну важную функциональность или задачу.
+*/
 
-class Wallet {
-  balance = 0;
+class Character {
+  #inventory = [];
+  #health = 10;
 
-  add(sum) {
-    this.balance += sum;
-    return this;
+  pickItem(item) {
+    this.#inventory.push(item);
   }
 
-  remove(sum) {
-    this.balance -= sum;
-    return this;
+  recieveDamage(damage) {
+    this.#health -= damage;
   }
 }
 
-const wallet = new Wallet();
-const res = wallet.add(100).remove(10).add(30);
-console.log(res); // Wallet {balance: 90}
-
-class Builder {
-  house = {};
-
-  addRoof() {
-    this.house.roof = 'Roof';
-    return this;
+class DB {
+  save(item) {
+    localStorage.setItem('char', item);
   }
 
-  addFloor() {
-    this.house.floor = 'Floor';
-    return this;
-  }
-
-  execute() {
-    return this.house;
+  load() {
+    ///...
   }
 }
-
-const res2 = new Builder().addRoof().addFloor().execute();
-console.log(res2); // {roof: 'Roof', floor: 'Floor'}
