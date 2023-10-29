@@ -1,0 +1,27 @@
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.container {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.button {
+  background: antiquewhite;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.activity {
+  background-color: antiquewhite;
+  border-radius: 8px;
+  padding: 20px;
+}
