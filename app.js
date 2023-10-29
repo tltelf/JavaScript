@@ -1,72 +1,31 @@
 'use strict';
 
-/*
-	Сделать генератор 3х идей от скуки
-	https://www.boredapi.com/api/activity
-	с отображением на странице
-*/
+console.log(document);
+console.log(document.documentElement);
+console.log(document.head);
+console.log(document.body);
 
-const container = document.querySelector('.container');
+const el = document.querySelector('.container');
+const el2 = document.querySelectorAll('meta');
+console.log(el);
+console.log(el2);
+const el3 = document.getElementsByClassName('container');
+const el4 = document.getElementsByTagName('meta');
+console.log(el3);
+console.log(el4);
 
-async function getIdia() {
-  const idia = await fetch('https://www.boredapi.com/api/activity');
-  return idia.json();
+const button = document.createElement('button');
+button.innerHTML = 'тест';
+
+const button2 = document.createElement('button');
+button2.innerHTML = 'тест2';
+
+el.append(button);
+// el.prepend(button2);
+// el.before(button2);
+el.after(button2);
+
+function generate() {
+  console.log(el.parentNode);
+  el.remove();
 }
-
-async function getIdias() {
-  try {
-    const idias = await Promise.all([getIdia(), getIdia(), getIdia()]);
-    renderIdias(idias);
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-function renderIdias(arrayIdias) {
-  const activity = document.querySelectorAll('.activity');
-  arrayIdias.map((idia) => {
-    if (activity.length < 3) {
-      createActivity(idia);
-    }
-    activity.forEach((activ) => {
-      activ.innerText = idia.activity;
-    });
-  });
-}
-
-function createActivity(idia) {
-  const idiaDiv = document.createElement('div');
-  container.appendChild(idiaDiv);
-  idiaDiv.classList.add('activity');
-  idiaDiv.innerText = idia.activity;
-}
-
-/*
-
-const wrapper = document.querySelector('.wrapper');
-
-async function getActivity() {
-	const res = await fetch('https://www.boredapi.com/api/activity');
-	return res.json();
-}
-
-async function generate() {
-	try {
-		wrapper.innerHTML = '';
-		const data = await Promise.all([
-			getActivity(),
-			getActivity(),
-			getActivity(),
-		]);
-		console.log(data);
-		for (const el of data) {
-			const element = document.createElement('div');
-			element.innerHTML = `${el.activity}`;
-			wrapper.appendChild(element);
-		}
-	} catch(e) {
-		console.error(e);
-	}
-}
-
-*/
