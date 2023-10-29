@@ -1,19 +1,13 @@
 'use strict';
 
-function generate(event) {
-  console.log(event.target.getBoundingClientRect());
+const button = document.querySelector('.button');
 
-  console.log(`X scrollX: ${window.scrollX}`);
-  console.log(`Y scrollY: ${window.scrollY}`);
-  console.log(`clientWidth: ${document.documentElement.clientWidth}`);
-  console.log(`clientHeight: ${document.documentElement.clientHeight}`);
+const eventHandler = function (event) {
+  console.log('Event 1');
+};
 
-  const el = document.querySelector('.down');
-  const rect = el.getBoundingClientRect();
-
-  window.scrollTo({
-    left: window.scrollX + rect.left,
-    top: window.scrollY + rect.top,
-    behavior: 'smooth',
-  });
-}
+button.addEventListener('click', eventHandler);
+button.addEventListener('click', (event) => {
+  console.log('Event 2');
+  button.removeEventListener('click', eventHandler);
+});
