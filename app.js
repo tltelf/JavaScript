@@ -15,15 +15,8 @@ inner.addEventListener('click', function (event) {
   console.log('inner');
   console.log(event.target);
   console.log(event.currentTarget);
-  this.style.backgroundColor = 'grey';
+  this.style.backgroundColor = 'blue';
   // event.stopPropagation();
-});
-
-wrapper.addEventListener('click', function (event) {
-  console.log('wrapper');
-  console.log(event.target);
-  console.log(event.currentTarget);
-  this.style.backgroundColor = 'antiquewhite';
 });
 
 wrapper.addEventListener(
@@ -32,7 +25,14 @@ wrapper.addEventListener(
     console.log('wrapper');
     console.log(event.target);
     console.log(event.currentTarget);
-    this.style.backgroundColor = 'antiquewhite';
+    this.style.backgroundColor = 'green';
   },
   true
 );
+
+wrapper.addEventListener('click', function (event) {
+  console.log('wrapper');
+  console.log(event.target);
+  console.log(event.currentTarget);
+  this.style.backgroundColor = 'green';
+});
