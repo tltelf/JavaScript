@@ -19,7 +19,7 @@
   color: white;
 }
 
-.inner {
+.wrapper > div {
   padding: 20px;
   color: white;
   border-radius: 10px;
