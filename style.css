@@ -3,10 +3,13 @@
   display: flex;
   gap: 10px;
   justify-content: center;
+  font-size: 30px;
+  color: white;
 }
 .container {
   margin-top: 20px;
   display: flex;
+  flex-direction: column;
   gap: 10px;
   justify-content: center;
 }
