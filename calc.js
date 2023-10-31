@@ -8,11 +8,6 @@ export function sub(f, s) {
   return f - s;
 }
 
-console.log('d');
-
-async function getProducts() {
-  const res = await fetch('https://dummyjson.com/products');
-  return res.json();
+export function div(f, s) {
+  return f / s;
 }
-
-export const res = await getProducts();
