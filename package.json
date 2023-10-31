@@ -1,4 +1,26 @@
 {
+  "name": "book-app",
+  "version": "1.0.0",
+  "description": "Cool book app",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "npx live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tltelf/JavaScript.git"
+  },
+  "keywords": [
+    "books"
+  ],
+  "author": "Mark Kopnev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tltelf/JavaScript/issues"
+  },
+  "homepage": "https://github.com/tltelf/JavaScript#readme",
   "dependencies": {
     "live-server": "^1.2.2",
     "rollup": "^4.2.0"
