@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Cool book app",
   "main": "app.js",
-  "devDependencies": {},
   "scripts": {
     "start": "npx live-server",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,7 +21,10 @@
   },
   "homepage": "https://github.com/tltelf/JavaScript#readme",
   "dependencies": {
-    "live-server": "^1.2.2",
+    "axios": "^1.6.0",
+    "live-server": "^1.2.2"
+  },
+  "devDependencies": {
     "rollup": "^4.2.0"
   }
 }
